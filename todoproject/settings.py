@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-0%29y75rbfv7p4r2=2larw0g_z-)^4*std(-aiz_5*+jo#j7j1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['djapitodo.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'todoproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME':os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -125,8 +125,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATICFILES_DIRS = BASE_DIR/'staticfiles'
-STATIC_ROOT  =  [STATICFILES_DIRS]
+STATIC_ROOT  = os.path.join('static')
 STATIC_URL = '/static/'
 
 # Default primary key field type
@@ -142,7 +141,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 #  Add configuration for static files storage using whitenoise
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 import dj_database_url 
 prod_db  =  dj_database_url.config(conn_max_age=500)
